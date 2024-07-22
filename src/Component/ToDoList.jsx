@@ -1,20 +1,20 @@
 import ToDoCard from "./ToDoCard"
 
-
-export default function ToDoList(props) {
-    const  { todos } = props
+export default function ToDoList( {todos, onDelete, onEdit} ) {
+  
   return (
     <ul className="main">
-      
-      {todos.map((todo, todoIndex) => {
-        return(
-         <ToDoCard key = {todoIndex}> <p>{todo}</p></ToDoCard>
-        
-        )
-      })}
+      {todos.map((todo, index) => (
+
+            <ToDoCard 
+             key={index} 
+            todo={todo}
+            onDelete={() => onDelete(index)}
+           onEdit={(updatedTodo) => onEdit(index, updatedTodo)}
+>
+            <p>{todo}</p>
+           </ToDoCard>
+      ))}
     </ul>
   )
-    
-
-    
-  }
+}
